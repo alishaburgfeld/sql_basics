@@ -34,8 +34,8 @@ In this challenge you're going to:
 4. Insert new records from a provided set of seed data
 5. Verify seed records were inserted with the `SELECT` SQL command
 
-
 ## Create a Database
+
 Postgres supports multiple databases. So when we interact with the server, we'll need to specify which database we want to connect to. Before that though, we need to create our database. Postgres comes with a command for this:
 
 ```
@@ -55,7 +55,6 @@ No relations found.
 
 `No relations found.`. That's expected though, we don't have any tables yet.
 
-
 ## Create Your Schema
 
 Before we can insert data, we're going to need to define our schema. One important point we need to cover before we create our tables: primary keys. While it's not required for a table to have a primary key, it's extremely useful when linking records between tables. One example of this "linking" is the `address_id` column of the `students` table. Primary keys are guaranteed to be unique, which makes them perfect as identifiers when linking rows across tables.
@@ -66,17 +65,15 @@ Remember our table design from the prep reading? Convert each of these to a `CRE
 
 Postgres supports a number of different column types. Here's a summary of the most common ones:
 
-
-description | column type
---- | --- |
-integer numbers from -2^31 to 2^31 | INTEGER |
-fractional number | DECIMAL |
-variable length strings from 1-255 characters | VARCHAR([1-255]) |
-fixed length string | CHARACTER(length) |
-longer strings, up to 16KB | TEXT |
-date, no time| DATE |
-date with time | TIMESTAMP |
-
+| description                                   | column type       |
+| --------------------------------------------- | ----------------- |
+| integer numbers from -2^31 to 2^31            | INTEGER           |
+| fractional number                             | DECIMAL           |
+| variable length strings from 1-255 characters | VARCHAR([1-255])  |
+| fixed length string                           | CHARACTER(length) |
+| longer strings, up to 16KB                    | TEXT              |
+| date, no time                                 | DATE              |
+| date with time                                | TIMESTAMP         |
 
 Add the missing `CREATE TABLE` statements to the included `create_schema.sql`. You can run this file of SQL commands on your local postgres sever like so:
 
@@ -99,34 +96,32 @@ CREATE TABLE students (
 
 Some notes:
 
-* `serial` is a special column type provided by Postgres. It creates an integer column whose value is automatically set to the next number in sequence (starting at zero). This way each record has a unique `id` value that we don't need to set ourselves.
-* It's not necessary to specify `NOT NULL` for primary keys. They are `NOT NULL` by default.
-* I've allowed `address_id` to be `NULL` since we might not know the address of a student.
+-   `serial` is a special column type provided by Postgres. It creates an integer column whose value is automatically set to the next number in sequence (starting at zero). This way each record has a unique `id` value that we don't need to set ourselves.
+-   It's not necessary to specify `NOT NULL` for primary keys. They are `NOT NULL` by default.
+-   I've allowed `address_id` to be `NULL` since we might not know the address of a student.
 
 Here are the other tables you need to write the `CREATE TABLE` statements for:
 
-**addresses** |
---- |
-id |
-line_1 |
-city |
-state |
-zipcode |
+| **addresses** |
+| ------------- |
+| id            |
+| line_1        |
+| city          |
+| state         |
+| zipcode       |
 
+| **classes** |
+| ----------- |
+| id          |
+| name        |
+| credits     |
 
-**classes** |
---- |
-id |
-name |
-credits |
-
-**enrollments** |
---- |
-id |
-student_id |
-class_id |
-grade |
-
+| **enrollments** |
+| --------------- |
+| id              |
+| student_id      |
+| class_id        |
+| grade           |
 
 Remember you can load your schema with the following command:
 
@@ -189,3 +184,5 @@ school=# SELECT * FROM students;
 ```
 
 Run the same select command against all of your tables and make sure you see the same records listing in `seed_data.sql`.
+
+<!-- query help: https://github.com/romeoplatoon/curriculum/blob/main/page-resources/sql-queries.md -->
