@@ -186,3 +186,10 @@ school=# SELECT * FROM students;
 Run the same select command against all of your tables and make sure you see the same records listing in `seed_data.sql`.
 
 <!-- query help: https://github.com/romeoplatoon/curriculum/blob/main/page-resources/sql-queries.md -->
+
+Note when updating a record you must include commas between each column. i.e:
+UPDATE addresses SET line_1='200 Church St.', city= 'Barrington', state='IL', zipcode='60010';
+
+Helpful string query site:
+https://www.educba.com/postgresql-string-contains
+https://www.postgresql.org/docs/current/functions-matching.html
