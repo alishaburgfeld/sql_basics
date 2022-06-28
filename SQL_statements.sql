@@ -25,28 +25,29 @@ The average age of all the students.
 
 
 Addresses that have a space in their city name.
-    -- SELECT * FROM addresses where city like '% %';  (NOT WORKING!!!!!)
+    SELECT * FROM addresses where city like '% %';
 
 Students & their addresses that live in a city with more than one word in the city name.
 
 
 The average number of credits for classes offered at the school.
-    -- SELECT AVG(credits) FROM classes
+    SELECT AVG(credits) FROM classes;
 
 The first and last name of all students who have received an 'A'.
-    -- SELECT (students.first_name, students.last_name) FROM students INNER JOIN enrollments on students.id = enrollments.student_id WHERE enrollments.grade = 'A'
+    SELECT (students.first_name, students.last_name) FROM students INNER JOIN enrollments on students.id = enrollments.student_id WHERE enrollments.grade = 'A'
 
 Each student's first name and the total credits they've enrolled in
-    -- SELECT (students.first_name, SUM(classes.credits)) FROM students, classes INNER JOIN enrollments on students.id = enrollments.student_id, on class_id= enrollments.class_id
+    -- SELECT (students.first_name, SUM(classes.credits)) FROM students, classes INNER JOIN enrollments on students.id = enrollments.student_id, on class_id= enrollments.class_id; (DOESN'T WORK!!)
 
 The total number of credits each student has received a grade for.
-    -- SELECT SUM(classes.credits) FROM classes RIGHT JOIN enrollments, students on classes.id = enrollments.class_id WHERE enrollment.grade IS NOT NULL;
+    SELECT SUM(classes.credits) FROM classes RIGHT JOIN enrollments on classes.id = enrollments.class_id WHERE enrollments.grade IS NOT NULL;
 
 All enrollments, including the class name.
-    -- SELECT (*.enrollments, classes.name) FROM enrollments, classes on enrollments.class_id=classes.id;
+    -- SELECT (*, classes.name) FROM enrollments, classes on enrollments.class_id=classes.id;
 
 Students born between 1982-1985 (inclusive).
-    -- SELECT * FROM students WHERE students.birthdate <= '1985-12-12' and students.birthdate => '1982-01-01';
+    SELECT * FROM students WHERE students.birthdate <= '1985-12-12' and students.birthdate >= '1982-01-01';
+    --should this be 1984-12-12?
 
 Insert a new enrollment recording that Andre Rohan took PHYS 218 and got an A.
-    -- INSERT INTO enrollments (student_id, class_id, grade) VALUES (5, 4, 'A')
+    INSERT INTO enrollments (student_id, class_id, grade) VALUES (5, 4, 'A');
